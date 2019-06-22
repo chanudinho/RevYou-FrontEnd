@@ -1,0 +1,26 @@
+.login {
+  text-align: center;
+  margin: 50px;
+}
+
+.border-shadow{
+  box-shadow: 7px 7px 10px 0px #5b5b5b !important;
+  border-radius: 20px !important;
+}
+
+.img-login{
+  display: block;
+  max-width: 90% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.input-login{
+  width: 80%;
+}
+
+.btn-login{
+  width: 80%;
+  margin: 5px;
+}
+
