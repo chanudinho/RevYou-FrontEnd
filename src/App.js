@@ -1,35 +1,20 @@
-import React, {Component} from 'react';
-//import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
-import TelaLogin from './screens/telaLogin';
-
-const handleSubmit = (e) => {
-  console.log(e);
-}
+import MainScreen from './screens/mainScreen/mainScreen'
+import "./menu/Layout.css";
 
 class App extends Component {
   constructor(){
-    super()
+    super();
     this.state = {
-      email: '',
-      password: ''
+      login: false
     }
   }
 
-  handleEmailChange (e) {
-
-  }
-
-  handlePasswordChange (e) {
-
-  }
-
-  
-
   render() {
     return (
-      <TelaLogin/>
-    ) 
+      <MainScreen login={this.state.login}/>
+    );
   }
 }
 
