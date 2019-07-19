@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import SingupComponent from '../../components/projectDefinition/singupComponent';
 import axios from 'axios'
-import {Route, Redirect } from 'react-router-dom'
+import {Redirect } from 'react-router-dom'
 import {message} from 'antd'
 
 const initialValues = {

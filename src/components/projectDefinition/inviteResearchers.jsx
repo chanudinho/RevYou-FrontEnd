@@ -1,63 +1,65 @@
-import React, {Component} from 'react';
-import {Collapse, Table, Divider, Button, Input, Row, Col} from 'antd';
+import React from 'react';
+import { Collapse, Table, Tag, Button, Input, Row, Col } from 'antd';
 
 const Panel = Collapse.Panel;
 
 const columns = [
-    {
-        title: 'E-mail' ,
-        dataIndex: 'email' ,
-        key: 'email' ,
-    },
-    {
-        title: 'Action' ,
-        key: 'action' ,
-        render: () => (
+  {
+    title: 'E-mail',
+    dataIndex: 'email',
+    key: 'email'
+  },
+  {
+    title: 'Situation',
+    dataIndex: 'situation',
+    key: 'situation',
+    render: situation => {
+        let color = situation.length > 6 ? 'geekblue' : 'green';
+        if (situation === 'denied') {
+            color = 'volcano';
+        }
+        return (
             <span>
-                <Button type="link" htmlType="submit" icon="delete"/>
+                <Tag color={color}>
+                    {situation.toUpperCase()}
+                </Tag>
             </span>
-        ),
-    }
-];
-
-const data = [
-    {
-        email: 'antoniobj2@gmail.com'
-    },
-    {
-        email: 'edmo@dcomp.ufs.br'
-    },
-    {
-        email: 'simonedcomp@hotmail.com'
-    }
-]
-
-class inviteResearchers extends Component{
-    render(){
-        return(
-            <Collapse defaultActiveKey={['1', '2']} marginBottom="20">
-                    <Panel
-                        marginBottom={20}
-                        showArrow={false}
-                        accordion={false}
-                        header={<h3>Researchers</h3>}
-                        key="1"
-                    >
-                        <Row style={{marginBottom: 20}}>
-                            <Col span={12}>
-                                <Input placeholder="Researcher Email..." />
-                            </Col>
-                            <Col>
-                                <Button type="primary" htmlType="submit">Send</Button>
-                            </Col>
-                        </Row>
-                        <Table columns={columns} dataSource={data}>
-
-                        </Table>
-                    </Panel>
-            </Collapse>
         )
     }
-}
+  },
+  {
+    title: 'Action',
+    key: 'action',
+    render: () => (
+      <span>
+        <Button htmlType="submit" icon="delete" />
+      </span>
+    )
+  }
+];
+
+const inviteResearchers = ({data, handleSubmit}) => (
+  <Collapse defaultActiveKey={['1', '2']} marginBottom="20">
+    <Panel
+      marginBottom={20}
+      showArrow={false}
+      accordion={false}
+      header={<h3>Researchers</h3>}
+      key="1"
+    >
+      <Row style={{ marginBottom: 20 }}>
+        <Col span={12}>
+          <Input id="invite" placeholder="Researcher Email..." onPressEnter={handleSubmit}/>
+        </Col>
+        <Col>
+          <Button type="primary" htmlType="submit" onClick={handleSubmit}>
+            Send
+          </Button>
+        </Col>
+      </Row>
+      <Table columns={columns} dataSource={data} rowKey={data => data.key} />
+    </Panel>
+  </Collapse>
+);
 
 export default inviteResearchers;

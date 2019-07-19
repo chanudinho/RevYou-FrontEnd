@@ -4,9 +4,9 @@ import Extraction from './../screens/headers/extraction';
 import TemplateForm from './../screens/templateForm/TemplateForm';
 
 //minhas rotas
-import ListProjects from '../components/projectDefinition/listProjects';
+import ListProjects from '../screens/project/project';
 import UserProfile from '../components/projectDefinition/userProfile';
-import InviteResearchers from '../components/projectDefinition/inviteResearchers';
+import InviteResearchers from '../screens/inviteResearchers/inviteResearchers';
 
 const appRoutes = [
     {

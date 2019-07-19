@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { message, Skeleton, Radio, Form, Input, Button, Row, Col, Collapse, Select } from 'antd';
+import { Skeleton, Radio, Form, Input, Button, Row, Col, Collapse, Select } from 'antd';
 import FieldList from '../../components/extraction/FieldList';
 
 class TemplateForm extends Component {

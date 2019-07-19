@@ -7,7 +7,7 @@ import { Table, Input, Tag, Radio, Button } from 'antd';
   };
 
   render() {
-    const data = [{"id":46,"key":46,"type":"open","options":[],"description":"teste1 "}];
+    //const data = [{"id":46,"key":46,"type":"open","options":[],"description":"teste1 "}];
     const columns = [
       {
         title: 'Description',
