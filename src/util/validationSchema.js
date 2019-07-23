@@ -57,3 +57,6 @@ export const singupValidation = Yup.object().shape({
   passwordVerification: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
 });
 
+export const createProject = Yup.object().shape({
+  title: Yup.string().required()
+})

@@ -38,7 +38,7 @@ const listProject = ({data}) => {
           <Search placeholder="input the project you search..." size="large" enterButton />
         </Col>
         <Col>
-          <Button size="large" type="primary">
+          <Button size="large" type="primary"  href="/#/user/newproject">
             Register
           </Button>
         </Col>
