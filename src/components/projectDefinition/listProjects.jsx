@@ -5,32 +5,39 @@ import { Link } from 'react-router-dom';
 const Panel = Collapse.Panel;
 const Search = Input.Search;
 
-const columns = [
-  {
-    title: 'Project Name',
-    dataIndex: 'name',
-    key: 'name',
-    render: text => <Link to="/project/inviteresearchers">{text}</Link>
-  },
-  {
-    title: 'Cordinator',
-    dataIndex: 'cordinator',
-    key: 'cordinator'
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: () => (
-      <span>
-        <Button type="link" htmlType="submit" icon="edit" />
-        <Divider type="vertical" />
-        <Button type="link" htmlType="submit" icon="delete" />
-      </span>
-    )
-  }
-];
+const listProject = ({ data, handleDelete }) => {
+  const columns = [
+    {
+      title: 'Project Name',
+      dataIndex: 'name',
+      key: 'name',
+      render: text => <Link to="/project/inviteresearchers">{text}</Link>
+    },
+    {
+      title: 'Cordinator',
+      dataIndex: 'cordinator',
+      key: 'cordinator'
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (text, record) => {
+        return (
+          <span>
+            <Button type="link" htmlType="submit" icon="edit" />
+            <Divider type="vertical" />
+            <Button
+              type="link"
+              htmlType="submit"
+              icon="delete"
+              onClick={handleDelete(record.key)}
+            />
+          </span>
+        );
+      }
+    }
+  ];
 
-const listProject = ({data}) => {
   return (
     <Row>
       <Row gutter={20} style={{ marginBottom: 20 }}>
@@ -38,7 +45,7 @@ const listProject = ({data}) => {
           <Search placeholder="input the project you search..." size="large" enterButton />
         </Col>
         <Col>
-          <Button size="large" type="primary"  href="/#/user/newproject">
+          <Button size="large" type="primary" href="/#/user/newproject">
             Register
           </Button>
         </Col>

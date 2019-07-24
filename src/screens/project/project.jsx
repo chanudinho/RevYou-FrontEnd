@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { message } from 'antd';
 import ProjectComponent from '../../components/projectDefinition/listProjects';
 
 class project extends Component {
@@ -10,8 +11,23 @@ class project extends Component {
     };
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.getData();
+  }
+
+  handleDelete(value) {
+    return () => {
+      console.log('value 2 ', value);
+      const id = value;
+      axios
+        .delete(`http://localhost:5000/project/${id}`)
+        .then(res => {
+          window.location.reload();
+        })
+        .catch(error => {
+          message.error('Ops... Server error, please contact the administrator');
+        });
+    };
   }
 
   getData() {
@@ -26,9 +42,9 @@ class project extends Component {
       this.setState({ data });
     });
   }
-  
+
   render() {
-    return <ProjectComponent {...this.state} />;
+    return <ProjectComponent {...this.state} handleDelete={this.handleDelete} />;
   }
 }
 

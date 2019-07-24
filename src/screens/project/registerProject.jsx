@@ -17,25 +17,28 @@ class registerProject extends Component {
       redirect: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleSubmit(values) {
     axios
-      .post('localhost:5000/project', {
+      .post('http://localhost:5000/project', {
         title: values.title,
         description: values.description,
         objective: values.objective,
         CoordinatorId: '1ff1a81a-9781-4f20-96a5-2c84c8d826d1' //mudar depois
       })
       .then(res => {
-        message.success('You have successfully registered');
+        message.success('your project was successfully registered');
         this.setState({
           redirect: true
         });
       })
       .catch(error => {
-        message.error('Ops... Server error, please contact the administrator');
+        if (error.status === 404) {
+          message.error('Ops... Server error, please contact the administrator');
+        } else {
+          message.error('Ops... Server error, please contact the administrator');
+        }
       });
   }
 
