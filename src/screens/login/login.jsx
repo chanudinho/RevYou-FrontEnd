@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './login.css';
 import axios from 'axios'
 import LoginComponent from '../../components/projectDefinition/loginComponent';
+import {connect} from 'react-redux';
+import {login} from '../../reducers/login/actions'
 
 
 class Login extends Component {
@@ -38,7 +40,8 @@ class Login extends Component {
     axios.get(`http://localhost:5000/researcher/${values.email}`).then(res => 
       {
         if(res.status === 202){
-          console.log(res);
+          console.log("logou");
+          this.props.login(values.email);
         }
       }
       ).catch(error => {
@@ -63,4 +66,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  counters: state.login
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  login: (email) => dispatch(login(email)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
