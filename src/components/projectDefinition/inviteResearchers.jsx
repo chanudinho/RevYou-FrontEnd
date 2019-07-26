@@ -3,7 +3,7 @@ import { Collapse, Table, Tag, Button, Input, Row, Col } from 'antd';
 
 const Panel = Collapse.Panel;
 
-const inviteResearchers = ({ data, handleSubmit, handleDelete }) => {
+const inviteResearchers = ({ data, handleSubmit, handleDelete}) => {
   const columns = [
     {
       title: 'E-mail',
@@ -31,7 +31,7 @@ const inviteResearchers = ({ data, handleSubmit, handleDelete }) => {
       key: 'action',
       render: (text, record) => (
         <span>
-          <Button htmlType="submit" icon="delete" onClick={handleDelete(record.key)}/>
+          <Button htmlType="submit" icon="delete" onClick={() => handleDelete(record.key)}/>
         </span>
       )
     }
@@ -50,7 +50,7 @@ const inviteResearchers = ({ data, handleSubmit, handleDelete }) => {
           <Col span={12}>
             <Input id="invite" placeholder="Researcher Email..." onPressEnter={handleSubmit} />
           </Col>
-          <Col>
+          <Col span={1}>
             <Button type="primary" htmlType="submit" onClick={handleSubmit}>
               Send
             </Button>

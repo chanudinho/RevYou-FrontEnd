@@ -6,8 +6,13 @@ import TemplateForm from './../screens/templateForm/TemplateForm';
 //minhas rotas
 import ListProjects from '../screens/project/project';
 import InviteResearchers from '../screens/inviteResearchers/inviteResearchers';
-import registerProject from '../screens/project/registerProject'
+import RegisterProject from '../screens/project/registerProject';
+import UpdateProject from '../screens/project/updateProject';
+import Protocol from '../screens/protocol/protocol';
 import UserProfile from '../components/projectDefinition/userProfile';
+
+//teste
+import Test from '../components/projectDefinition/teste'
 
 const appRoutes = [
     {
@@ -59,10 +64,27 @@ const appRoutes = [
       exact: false,
     },
     {
-      name: "InviteResearchers",
+      name: "RegisterProject",
       path: "/user/newproject",
-      component: registerProject,
+      component: RegisterProject,
       exact: false,
+    },{
+      name: "Teste",
+      path: "/teste",
+      component: Test,
+      exact: false
+    },
+    {
+      name: "UpdateProject",
+      path: "/user/updateproject",
+      component: UpdateProject,
+      exact: false,
+    },
+    {
+      name: "Protocol",
+      path: "/project",
+      component: Protocol,
+      exact: true,
     }
 ];
 

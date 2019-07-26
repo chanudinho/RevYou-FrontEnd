@@ -10,6 +10,7 @@ class inviteResearchers extends Component {
       data: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentWillMount() {
@@ -18,30 +19,32 @@ class inviteResearchers extends Component {
 
   handleSubmit(e) {
     const email = e.target.value || document.getElementById('invite').value;
-    axios.post(`http://localhost:5000/invitation`, {
-      email,
-      ProjectId: '03f72672-d294-4c59-8f18-9ab8b9467365'
-    }).then(res => {
-        window.location.reload();
-    });
+    console.log('convidando = ', email);
+    axios
+      .post(`http://localhost:5000/invitation`, {
+        email,
+        ProjectId: '16367eac-a11e-4bab-9c71-0d5809ab4c8e' //mudar depois
+      })
+      .then(res => {
+        this.getData();
+      })
+      .catch(error => {});
   }
 
   handleDelete(value) {
-    return () => {
-      axios
-        .delete(`http://localhost:5000/invitation/${value}`)
-        .then(res => {
-          window.location.reload();
-        })
-        .catch(error => {
-          message.error('Ops... Server error, please contact the administrator');
-        });
-    };
+    axios
+      .delete(`http://localhost:5000/invitation/${value}`)
+      .then(res => {
+        this.getData();
+      })
+      .catch(error => {
+        message.error('Ops... Server error, please contact the administrator');
+      });
   }
 
   getData() {
     axios
-      .get(`http://localhost:5000/project/inviteds/03f72672-d294-4c59-8f18-9ab8b9467365`)
+      .get(`http://localhost:5000/project/inviteds/16367eac-a11e-4bab-9c71-0d5809ab4c8e`)
       .then(res => {
         let data = res.data.map(data => {
           return {

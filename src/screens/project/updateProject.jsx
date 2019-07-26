@@ -2,22 +2,21 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { message } from 'antd';
 import axios from 'axios';
-import RegisterProjectComponent from '../../components/projectDefinition/registerProject';
+import UpdateComponent from '../../components/projectDefinition/registerProject';
 
-const initialValues = {
-  title: '',
-  description: '',
-  objective: ''
-};
+const infoTitle = 'Edit';
 
-const infoTitle = 'Create';
-
-class registerProject extends Component {
+class updateProject extends Component {
   constructor() {
     super();
     this.state = {
       redirect: false,
-      valueSelect: null
+      valueSelect: null,
+      initialValues: {
+        title: '',
+        description: '',
+        objective: ''
+      }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -25,38 +24,36 @@ class registerProject extends Component {
 
   handleChange(value) {
     this.setState({ valueSelect: value });
+    console.log(this.state.valueSelect);
   }
 
   handleSubmit(values) {
+    const { title, description, objective } = values;
     axios
-      .post('http://localhost:5000/project', {
-        title: values.title,
-        description: values.description,
-        objective: values.objective,
+      .put(`http://localhost:5000/project/`, {
+        title,
+        description,
+        objective,
         CoordinatorId: '1ff1a81a-9781-4f20-96a5-2c84c8d826d1' //mudar depois
       })
       .then(res => {
-        message.success('your project was successfully registered');
+        message.success('your project was successfully update');
         this.setState({
           redirect: true
         });
       })
       .catch(error => {
-        if (error.status === 404) {
-          message.error('Ops... Server error, please contact the administrator');
-        } else {
-          message.error('Ops... Server error, please contact the administrator');
-        }
+        message.error('Ops... Server error, please contact the administrator');
       });
   }
 
   render() {
     if (this.state.redirect === false) {
       return (
-        <RegisterProjectComponent
+        <UpdateComponent
           {...this.state}
           infoTitle={infoTitle}
-          initialValues={initialValues}
+          initialValues={this.state.initialValues}
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
         />
@@ -67,4 +64,4 @@ class registerProject extends Component {
   }
 }
 
-export default registerProject;
+export default updateProject;

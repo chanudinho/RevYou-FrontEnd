@@ -1,17 +1,18 @@
 import React from 'react';
-import { Card, Form, Col, Button, Row, Input } from 'antd';
+import { Card, Form, Col, Button, Row, Input, Select } from 'antd';
 import { Formik, Form as FormikForm, Field as FormikField } from 'formik';
 import { createProject } from '../../util/validationSchema';
 
+const { Option } = Select;
 const FormItem = Form.Item;
 const { TextArea } = Input;
 
-const registerProject = ({ initialValues, handleSubmit }) => (
-  <Card title={<h1>Create Project</h1>}>
+const registerProject = ({ initialValues, handleSubmit, handleChange, valueSelect, infoTitle }) => (
+  <Card title={<h1>{infoTitle} Project</h1>}>
     <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={createProject}>
       {({ errors, touched }) => (
         <FormikForm>
-          <Row>
+          <Row gutter={10}>
             <Col span={12}>
               <FormItem
                 label="Project Name (Title)"
@@ -22,6 +23,30 @@ const registerProject = ({ initialValues, handleSubmit }) => (
                   name="title"
                   render={({ field }) => (
                     <Input {...field} name="title" placeholder="Project Name" />
+                  )}
+                />
+              </FormItem>
+            </Col>
+            <Col span={12}>
+              <FormItem
+                label="Review Type"
+                help={errors.reviewType && touched.reviewType ? errors.reviewType : null}
+                validateStatus={errors.reviewType && touched.reviewType ? 'error' : ''}
+              >
+                <FormikField
+                  name="reviewType"
+                  render={({ field }) => (
+                    <Select
+                      {...field}
+                      name="reviewType"
+                      placeholder="Select a Review Type"
+                      value={valueSelect ? valueSelect: ''}
+                      onChange={handleChange}
+                    >
+                      <Option value="Systematic Review">Systematic Review</Option>
+                      <Option value="Systematic Mapping">Systematic Mapping</Option>
+                      <Option value="Not Systematic">Not Systematic</Option>
+                    </Select>
                   )}
                 />
               </FormItem>
@@ -66,7 +91,9 @@ const registerProject = ({ initialValues, handleSubmit }) => (
               </Button>
             </Col>
             <Col>
-              <Button type="primary" htmlType="submit">Create Project</Button>
+              <Button type="primary" htmlType="submit">
+                {infoTitle} Project
+              </Button>
             </Col>
           </Row>
         </FormikForm>

@@ -26,9 +26,9 @@ class Sider extends Component {
             <Menu.Item key="2"><Link to="/user/userprofile">Profile</Link></Menu.Item>
           </SubMenu>
           <SubMenu key="Project" title={<span><Icon type="laptop" />Project</span>}>
-            <Menu.Item key="5"><Link to="/project/inviteresearchers">Manage Invitation</Link></Menu.Item>
-            <Menu.Item key="6">option6</Menu.Item>
-            <Menu.Item key="7">option7</Menu.Item>
+            <Menu.Item key="5"><Link to="/project">Protocol</Link></Menu.Item>
+            <Menu.Item key="6"><Link to="/project/inviteresearchers">Invite Researcher</Link></Menu.Item>
+            <Menu.Item key="7"><Link to="/user/updateproject">Edit Basic Information</Link></Menu.Item>
             <Menu.Item key="8">option8</Menu.Item>
           </SubMenu>
           <SubMenu key="sub3" title={<span><Icon type="notification" />Extraction</span>}>

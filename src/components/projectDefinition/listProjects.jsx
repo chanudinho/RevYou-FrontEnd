@@ -24,13 +24,13 @@ const listProject = ({ data, handleDelete }) => {
       render: (text, record) => {
         return (
           <span>
-            <Button type="link" htmlType="submit" icon="edit" />
+            <Button type="submit" htmlType="submit" icon="edit" href="/#/user/updateproject" />
             <Divider type="vertical" />
             <Button
-              type="link"
+              type="submit"
               htmlType="submit"
               icon="delete"
-              onClick={handleDelete(record.key)}
+              onClick={() => handleDelete(record.key)}
             />
           </span>
         );
@@ -44,7 +44,7 @@ const listProject = ({ data, handleDelete }) => {
         <Col span={12}>
           <Search placeholder="input the project you search..." size="large" enterButton />
         </Col>
-        <Col>
+        <Col span={1}>
           <Button size="large" type="primary" href="/#/user/newproject">
             Register
           </Button>

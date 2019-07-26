@@ -9,6 +9,7 @@ class project extends Component {
     this.state = {
       data: []
     };
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentWillMount() {
@@ -16,18 +17,15 @@ class project extends Component {
   }
 
   handleDelete(value) {
-    return () => {
-      console.log('value 2 ', value);
-      const id = value;
-      axios
-        .delete(`http://localhost:5000/project/${id}`)
-        .then(res => {
-          window.location.reload();
-        })
-        .catch(error => {
-          message.error('Ops... Server error, please contact the administrator');
-        });
-    };
+    const id = value;
+    axios
+      .delete(`http://localhost:5000/project/${id}`)
+      .then(res => {
+        this.getData();
+      })
+      .catch(error => {
+        message.error('Ops... Server error, please contact the administrator');
+      });
   }
 
   getData() {
