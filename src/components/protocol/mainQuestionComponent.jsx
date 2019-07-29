@@ -148,6 +148,18 @@ const protocolComponent = ({
                 </FormItem>
               </Col>
             </Row>
+            <Row type="flex" justify="space-between">
+              <Col span={1}>
+                <Button type="danger" htmlType="button">
+                  Cancel
+                </Button>
+              </Col>
+              <Col>
+                <Button type="primary" htmlType="submit">
+                  Save
+                </Button>
+              </Col>
+            </Row>
           </FormikForm>
         )}
       </Formik>
