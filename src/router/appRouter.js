@@ -18,7 +18,7 @@ const appRoutes = [
     {
       name: "Home",
       path: "/",
-      component: Extraction,
+      component: ListProjects,
       exact: true
     },
     {
@@ -46,14 +46,8 @@ const appRoutes = [
       exact: false,
     },
     {
-      name: "ListProjects",
-      path: "/user/listprojects",
-      component: ListProjects,
-      exact: false,
-    },
-    {
       name: "UserProfile",
-      path: "/user/userprofile",
+      path: "/userprofile",
       component: UserProfile,
       exact: false,
     },
@@ -76,15 +70,15 @@ const appRoutes = [
     },
     {
       name: "UpdateProject",
-      path: "/user/updateproject",
+      path: "/project",
       component: UpdateProject,
-      exact: false,
+      exact: true,
     },
     {
       name: "Protocol",
-      path: "/project",
+      path: "/project/protocol",
       component: Protocol,
-      exact: true,
+      exact: false,
     }
 ];
 

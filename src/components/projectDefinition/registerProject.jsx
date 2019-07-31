@@ -9,7 +9,7 @@ const { TextArea } = Input;
 
 const registerProject = ({ initialValues, handleSubmit, handleChange, valueSelect, infoTitle }) => (
   <Card title={<h1>{infoTitle} Project</h1>}>
-    <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={createProject}>
+    <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={createProject} enableReinitialize={true}>
       {({ errors, touched }) => (
         <FormikForm>
           <Row gutter={10}>

@@ -19,7 +19,7 @@ class userPofile extends Component {
           >
             <Formik>
               <FormikForm>
-                <Row gutter="40">
+                <Row gutter={40}>
                   <Col md={{ span: 8 }}>
                     <FormItem label="Old Passoword">
                       <FormikField

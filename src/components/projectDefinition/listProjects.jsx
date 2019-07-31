@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 const Panel = Collapse.Panel;
 const Search = Input.Search;
 
-const listProject = ({ data, handleDelete }) => {
+const listProject = ({ data, handleDelete, handleEdit }) => {
   const columns = [
     {
       title: 'Project Name',
       dataIndex: 'name',
       key: 'name',
-      render: text => <Link to="/project/inviteresearchers">{text}</Link>
+      render: text => <Link to="/project/protocol">{text}</Link>
     },
     {
       title: 'Cordinator',
@@ -24,7 +24,13 @@ const listProject = ({ data, handleDelete }) => {
       render: (text, record) => {
         return (
           <span>
-            <Button type="submit" htmlType="submit" icon="edit" href="/#/user/updateproject" />
+            <Button
+              type="submit"
+              htmlType="submit"
+              icon="edit"
+              href="/#/project/protocol"
+              onClick={() => handleEdit(record.key)}
+            />
             <Divider type="vertical" />
             <Button
               type="submit"

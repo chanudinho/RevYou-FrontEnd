@@ -22,13 +22,13 @@ class Sider extends Component {
           style={{ height: '100%', borderRight: 0 }}
         >
           <SubMenu key="User" title={<span><Icon type="user" />User</span>}>
-            <Menu.Item key="1"><Link to="/user/listprojects">Projects</Link></Menu.Item>
-            <Menu.Item key="2"><Link to="/user/userprofile">Profile</Link></Menu.Item>
+            <Menu.Item key="1"><Link to="/">Projects</Link></Menu.Item>
+            <Menu.Item key="2"><Link to="/userprofile">Profile</Link></Menu.Item>
           </SubMenu>
           <SubMenu key="Project" title={<span><Icon type="laptop" />Project</span>}>
-            <Menu.Item key="5"><Link to="/project">Protocol</Link></Menu.Item>
+            <Menu.Item key="5"><Link to="/project/protocol">Protocol</Link></Menu.Item>
             <Menu.Item key="6"><Link to="/project/inviteresearchers">Invite Researcher</Link></Menu.Item>
-            <Menu.Item key="7"><Link to="/user/updateproject">Edit Basic Information</Link></Menu.Item>
+            <Menu.Item key="7"><Link to="/project">Edit Basic Information</Link></Menu.Item>
             <Menu.Item key="8">option8</Menu.Item>
           </SubMenu>
           <SubMenu key="sub3" title={<span><Icon type="notification" />Extraction</span>}>

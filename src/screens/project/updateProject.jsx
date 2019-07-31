@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import { message } from 'antd';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import UpdateComponent from '../../components/projectDefinition/registerProject';
 
 const infoTitle = 'Edit';
 
-class updateProject extends Component {
+class UpdateProject extends PureComponent {
   constructor() {
     super();
     this.state = {
@@ -20,6 +21,11 @@ class updateProject extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.getData = this.getData.bind(this);
+  }
+
+  componentDidMount() {
+    this.getData();
   }
 
   handleChange(value) {
@@ -47,13 +53,25 @@ class updateProject extends Component {
       });
   }
 
+  getData() {
+    const id = this.props.project.id;
+    axios.get(`http://localhost:5000/project/${id}`).then(res => {
+      this.setState({
+        initialValues: {
+          title: res.data.title,
+          description: res.data.description,
+          objective: res.data.objective
+        }
+      });
+    });
+  }
+
   render() {
     if (this.state.redirect === false) {
       return (
         <UpdateComponent
           {...this.state}
           infoTitle={infoTitle}
-          initialValues={this.state.initialValues}
           handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
         />
@@ -64,4 +82,8 @@ class updateProject extends Component {
   }
 }
 
-export default updateProject;
+const mapStateToProps = state => ({
+  project: state.project
+});
+
+export default connect(mapStateToProps)(UpdateProject);
