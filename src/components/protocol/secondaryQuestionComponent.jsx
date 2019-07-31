@@ -22,7 +22,6 @@ const secondaryQuestion = ({
           <FormItem label="Description">
             <FormikField
               name={`description${i}`}
-              key={`${i}`}
               render={({ field }) => (
                 <TextArea
                   {...field}
