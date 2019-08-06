@@ -51,6 +51,7 @@ const secondaryQuestion = ({
           initialValues={initialValues}
           onSubmit={handleSubmit}
           validationSchema={createProject}
+          enableReinitialize={true}
         >
           {({ errors, touched }) => (
             <FormikForm>

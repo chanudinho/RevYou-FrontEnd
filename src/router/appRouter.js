@@ -9,7 +9,7 @@ import InviteResearchers from '../screens/inviteResearchers/inviteResearchers';
 import RegisterProject from '../screens/project/registerProject';
 import UpdateProject from '../screens/project/updateProject';
 import Protocol from '../screens/protocol/protocol';
-import UserProfile from '../components/projectDefinition/userProfile';
+import UserProfile from '../screens/userProfile/userProfile';
 
 //teste
 import Test from '../components/projectDefinition/teste'

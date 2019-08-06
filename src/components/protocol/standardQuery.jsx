@@ -25,6 +25,7 @@ const protocolComponent = ({
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={createProject}
+        enableReinitialize={true}
       >
         {({ errors, touched }) => (
           <FormikForm>

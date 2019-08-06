@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import MainQuestion from './mainQuestion';
 import SecondaryQuestion from './secondaryQuestion';
 import StandardQuery from './standardQuery';
@@ -11,9 +12,9 @@ class Protocol extends Component{
     render() {
         return(
             <div>
-                <MainQuestion/>
-                <SecondaryQuestion/>
-                <StandardQuery/>
+                <MainQuestion {...this.props}/>
+                <SecondaryQuestion {...this.props}/>
+                <StandardQuery {...this.props}/>
                 <SearchKeyword/>
                 <Language/>
                 <SearchEngine/>
@@ -23,4 +24,8 @@ class Protocol extends Component{
     }
 }
 
-export default Protocol;
+const mapStateToProps = state => ({
+    project: state.project
+});
+  
+export default connect(mapStateToProps)(Protocol);
