@@ -50,7 +50,6 @@ class StandardQuery extends Component {
         },
         id: res.data.id
       });
-      console.log(this.state.initialValues);
     });
   }
 

@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 const { Option } = Select;
 const Panel = Collapse.Panel;
 
-const typeAfter = (
-    <Select defaultValue="inclusion">
-      <Option value="inclusion">Inclusion</Option>
-      <Option value="exclusion">Exclusion</Option>
+const selectionCriteria = ({ data, handleDelete, handleEdit, handleSubmit, handleChange }) => {
+  const typeAfter = (
+    <Select defaultValue="Inclusion" onChange={handleChange}>
+      <Option value="Inclusion">Inclusion</Option>
+      <Option value="Exclusion">Exclusion</Option>
     </Select>
-);
+  );
 
-const selectionCriteria = ({ data, handleDelete, handleEdit }) => {
   const columns = [
     {
       title: 'Description',
@@ -55,15 +55,20 @@ const selectionCriteria = ({ data, handleDelete, handleEdit }) => {
         marginBottom={20}
         showArrow={false}
         accordion={false}
-        header={<h3>Selectinon Criteria</h3>}
+        header={<h3>Selection Criteria</h3>}
         key="1"
       >
         <Row gutter={20} style={{ marginBottom: 20 }}>
           <Col span={12}>
-            <Input addonAfter={typeAfter} placeholder="input the project you search..." />
+            <Input
+              id="description"
+              addonAfter={typeAfter}
+              placeholder="input the selection criteria description..."
+              onPressEnter={handleSubmit}
+            />
           </Col>
           <Col span={1}>
-            <Button type="primary">
+            <Button type="primary" onClick={handleSubmit}>
               Add
             </Button>
           </Col>

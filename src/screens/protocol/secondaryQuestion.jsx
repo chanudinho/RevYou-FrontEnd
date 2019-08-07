@@ -48,7 +48,7 @@ class SecondaryQuestion extends Component {
     axios.get(`http://localhost:5000/secondaryQuestion/${this.props.project.id}`).then(async res =>{ 
     const counter = res.data.length
       let obj = {};
-      await res.data.map((data, index) => {
+      await res.data.forEach((data, index) => {
         obj[`description${index}`] = data.description;
       })
       

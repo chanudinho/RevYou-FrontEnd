@@ -15,10 +15,10 @@ class Protocol extends Component{
                 <MainQuestion {...this.props}/>
                 <SecondaryQuestion {...this.props}/>
                 <StandardQuery {...this.props}/>
-                <SearchKeyword/>
+                <SearchKeyword {...this.props}/>
                 <Language/>
                 <SearchEngine/>
-                <SelectionCriteria/>
+                <SelectionCriteria {...this.props}/>
             </div>
         )
     }
