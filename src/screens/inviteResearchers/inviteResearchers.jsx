@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { message } from 'antd';
+import {connect} from 'react-redux'
 import InviteResearchers from '../../components/projectDefinition/inviteResearchers';
 import axios from 'axios';
 
@@ -19,11 +20,11 @@ class inviteResearchers extends Component {
 
   handleSubmit(e) {
     const email = e.target.value || document.getElementById('invite').value;
-    console.log('convidando = ', email);
+    const id = this.props.project.id;
     axios
       .post(`http://localhost:5000/invitation`, {
         email,
-        ProjectId: '16367eac-a11e-4bab-9c71-0d5809ab4c8e' //mudar depois
+        ProjectId: id
       })
       .then(res => {
         this.getData();
@@ -44,7 +45,7 @@ class inviteResearchers extends Component {
 
   getData() {
     axios
-      .get(`http://localhost:5000/project/inviteds/16367eac-a11e-4bab-9c71-0d5809ab4c8e`)
+      .get(`http://localhost:5000/project/inviteds/${this.props.project.id}`)
       .then(res => {
         let data = res.data.map(data => {
           return {
@@ -68,4 +69,8 @@ class inviteResearchers extends Component {
   }
 }
 
-export default inviteResearchers;
+const mapStateToProps = state => ({
+  project: state.project
+});
+
+export default connect(mapStateToProps)(inviteResearchers);

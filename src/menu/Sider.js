@@ -29,13 +29,17 @@ class Sider extends Component {
             <Menu.Item key="5"><Link to="/project/protocol">Protocol</Link></Menu.Item>
             <Menu.Item key="6"><Link to="/project/inviteresearchers">Invite Researcher</Link></Menu.Item>
             <Menu.Item key="7"><Link to="/project">Edit Basic Information</Link></Menu.Item>
-            <Menu.Item key="8">option8</Menu.Item>
+          </SubMenu>
+          <SubMenu key="Identification" title={<span><Icon type="file-search" />Identification</span>}>
+            <Menu.Item key="8"><Link to="/identification">Resume Search Sessions</Link></Menu.Item>
+            <Menu.Item key="9"><Link to="/">ACM</Link></Menu.Item>
+            <Menu.Item key="10"><Link to="/">IEEE</Link></Menu.Item>
           </SubMenu>
           <SubMenu key="sub3" title={<span><Icon type="notification" />Extraction</span>}>
-            <Menu.Item key="9"><Link to="/extraction/step">Setting Step</Link></Menu.Item>
-            <Menu.Item key="10"><Link to="/extraction/templateForm">Template Form</Link></Menu.Item>
-            <Menu.Item key="11"><Link to="/extraction/Distribution">Distribution</Link></Menu.Item>
-            <Menu.Item key="12">option12</Menu.Item>
+            <Menu.Item key="21"><Link to="/extraction/step">Setting Step</Link></Menu.Item>
+            <Menu.Item key="22"><Link to="/extraction/templateForm">Template Form</Link></Menu.Item>
+            <Menu.Item key="23"><Link to="/extraction/Distribution">Distribution</Link></Menu.Item>
+            <Menu.Item key="24">option12</Menu.Item>
           </SubMenu>
         </Menu>
       </Sider>

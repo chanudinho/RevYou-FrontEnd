@@ -22,23 +22,22 @@ class InvitionalProject extends Component {
 
   getData() {
     const email = this.props.login.email;
-    if (email) {
-      axios.get(`http://localhost:5000/project/invites/${email}`).then(res => {
-        let data = res.data.map(data => {
-          return {
-            name: data.title,
-            key: data.Inviteds[0].id
-          };
-        });
-        this.setState({ data });
+
+    axios.get(`http://localhost:5000/project/invites/${email}`).then(res => {
+      let data = res.data.map(data => {
+        return {
+          name: data.title,
+          key: data.Inviteds[0].id
+        };
       });
-    }
+      this.setState({ data });
+    });
   }
 
   handleAccept(value) {
     const id = value;
     axios
-      .put(`http://localhost:5000/invitation/${id}`,{
+      .put(`http://localhost:5000/invitation/${id}`, {
         situation: 'accept'
       })
       .then(res => {
@@ -53,8 +52,8 @@ class InvitionalProject extends Component {
   handleDenied(value) {
     const id = value;
     axios
-      .put(`http://localhost:5000/invitation/${id}`,{
-        situation : 'denied'
+      .put(`http://localhost:5000/invitation/${id}`, {
+        situation: 'denied'
       })
       .then(res => {
         this.getData();

@@ -10,6 +10,7 @@ import RegisterProject from '../screens/project/registerProject';
 import UpdateProject from '../screens/project/updateProject';
 import Protocol from '../screens/protocol/protocol';
 import UserProfile from '../screens/userProfile/userProfile';
+import IdentificationResume from '../screens/identification/identificationResume'
 
 //teste
 import Test from '../components/projectDefinition/teste'
@@ -79,6 +80,12 @@ const appRoutes = [
       path: "/project/protocol",
       component: Protocol,
       exact: false,
+    },
+    {
+      name: "Identification",
+      path: "/identification",
+      component: IdentificationResume,
+      exact: true,
     }
 ];
 
