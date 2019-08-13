@@ -7,7 +7,7 @@ import LoginRouter from '../../router/loginRouter';
 const MainScreen = ({login}) => {
     let logar;
     if(login.email === undefined ){
-        logar = true;
+        logar = false;
     }else{
         logar = true;
     }

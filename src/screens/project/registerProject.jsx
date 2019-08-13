@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { message } from 'antd';
 import axios from 'axios';
 import RegisterProjectComponent from '../../components/projectDefinition/registerProject';
@@ -33,7 +34,7 @@ class registerProject extends Component {
         title: values.title,
         description: values.description,
         objective: values.objective,
-        CoordinatorId: '1ff1a81a-9781-4f20-96a5-2c84c8d826d1' //mudar depois
+        CoordinatorId: '5800ca27-cbb3-4980-b14d-ee7ccb570851' //mudar depois
       })
       .then(res => {
         message.success('your project was successfully registered');

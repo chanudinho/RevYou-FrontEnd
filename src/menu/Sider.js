@@ -32,7 +32,7 @@ class Sider extends Component {
           </SubMenu>
           <SubMenu key="Identification" title={<span><Icon type="file-search" />Identification</span>}>
             <Menu.Item key="8"><Link to="/identification">Resume Search Sessions</Link></Menu.Item>
-            <Menu.Item key="9"><Link to="/">ACM</Link></Menu.Item>
+            <Menu.Item key="9"><Link to="/identification/ACM">ACM</Link></Menu.Item>
             <Menu.Item key="10"><Link to="/">IEEE</Link></Menu.Item>
           </SubMenu>
           <SubMenu key="sub3" title={<span><Icon type="notification" />Extraction</span>}>

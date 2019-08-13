@@ -12,6 +12,7 @@ import Protocol from '../screens/protocol/protocol';
 import UserProfile from '../screens/userProfile/userProfile';
 import IdentificationResume from '../screens/identification/identificationResume'
 
+import SpecificBases from '../screens/identification/specificBases';
 //teste
 import Test from '../components/projectDefinition/teste'
 
@@ -86,6 +87,12 @@ const appRoutes = [
       path: "/identification",
       component: IdentificationResume,
       exact: true,
+    },
+    {
+      name: "Identification",
+      path: "/identification/ACM",
+      component: SpecificBases,
+      exact: false,
     }
 ];
 
