@@ -40,8 +40,7 @@ class Login extends Component {
     axios.get(`http://localhost:5000/researcher/${values.email}`).then(res => 
       {
         if(res.status === 202){
-          console.log("logou");
-          this.props.login(values.email);
+          this.props.login(values.email, res.data.id);
         }
       }
       ).catch(error => {
@@ -66,12 +65,10 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  login: state.login
-})
-
 const mapDispatchToProps = (dispatch) => ({
-  login: (email) => dispatch(login(email)),
+  login: (email, id) => {
+    dispatch(login({email, id}))
+  } 
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);

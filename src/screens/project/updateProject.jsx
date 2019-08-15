@@ -40,7 +40,7 @@ class UpdateProject extends PureComponent {
         title,
         description,
         objective,
-        CoordinatorId: '1ff1a81a-9781-4f20-96a5-2c84c8d826d1' //mudar depois
+        CoordinatorId: this.props.login.id //mudar depois
       })
       .then(res => {
         message.success('your project was successfully update');
@@ -83,7 +83,8 @@ class UpdateProject extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  project: state.project
+  project: state.project,
+  login: state.login
 });
 
 export default connect(mapStateToProps)(UpdateProject);

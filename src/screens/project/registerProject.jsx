@@ -34,7 +34,7 @@ class registerProject extends Component {
         title: values.title,
         description: values.description,
         objective: values.objective,
-        CoordinatorId: '5800ca27-cbb3-4980-b14d-ee7ccb570851' //mudar depois
+        CoordinatorId: this.props.login.id
       })
       .then(res => {
         message.success('your project was successfully registered');
@@ -68,4 +68,8 @@ class registerProject extends Component {
   }
 }
 
-export default registerProject;
+const mapStateToProps = (state) => ({
+  login: state.login
+})
+
+export default connect(mapStateToProps)(registerProject);

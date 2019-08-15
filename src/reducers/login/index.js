@@ -4,7 +4,8 @@ export default (state= {}, action ) => {
     switch (action.type) {
         case LOGIN:
             return {
-                email: action.email
+                email: action.payload.email,
+                id: action.payload.id
             }
         case LOGOUT:
             return {};
