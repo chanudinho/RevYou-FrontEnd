@@ -78,13 +78,15 @@ class SpecificBases extends Component {
   //modal
   handleOk() {
     this.setState({
-      modalVisible: false
+      modalVisible: false,
+      studyUpdate: ''
     });
   }
 
   handleCancel() {
     this.setState({
-      modalVisible: false
+      modalVisible: false,
+      studyUpdate: ''
     });
   }
 
