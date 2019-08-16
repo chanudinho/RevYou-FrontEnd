@@ -1,6 +1,5 @@
 import React from 'react';
 import { Collapse, Table, Button, Row, Col, Input } from 'antd';
-import { Link } from 'react-router-dom';
 
 const Panel = Collapse.Panel;
 const Search = Input.Search;
@@ -37,7 +36,6 @@ const identificationResume = ({ data, handleEdit }) => {
               type="submit"
               htmlType="submit"
               icon="edit"
-              //href="/#/project/protocol"
               onClick={() => handleEdit(record.key)}
             />
           </span>

@@ -4,7 +4,7 @@ import { Collapse, Button, Row, Col, Input, Upload, Icon } from 'antd';
 const Panel = Collapse.Panel;
 const { TextArea } = Input;
 
-const specificBases = ({ data, handleEdit, handleChange }) => {
+const specificBases = ({ handleSubmit, fileList }) => {
   return (
     <Collapse defaultActiveKey={['1', '2']} marginBottom="20">
       <Panel
@@ -29,11 +29,9 @@ const specificBases = ({ data, handleEdit, handleChange }) => {
       >
         <Row>
           <Col>
-            <Upload
-                customRequest={handleChange}
-            >
+            <Upload customRequest={handleSubmit} accept=".bib" fileList={fileList}>
               <Button>
-                <Icon type="upload" /> Click to Upload
+                <Icon type="upload" /> Click to Import
               </Button>
             </Upload>
           </Col>
