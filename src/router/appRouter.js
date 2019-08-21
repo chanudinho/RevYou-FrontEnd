@@ -11,8 +11,9 @@ import UpdateProject from '../screens/project/updateProject';
 import Protocol from '../screens/protocol/protocol';
 import UserProfile from '../screens/userProfile/userProfile';
 import IdentificationResume from '../screens/identification/identificationResume'
-
 import SpecificBases from '../screens/identification/specificBases';
+import IdentificationDuplicates from '../screens/identification/identificationDuplicates';
+
 //teste
 import Test from '../components/projectDefinition/teste'
 
@@ -64,7 +65,8 @@ const appRoutes = [
       path: "/user/newproject",
       component: RegisterProject,
       exact: false,
-    },{
+    },
+    {
       name: "Teste",
       path: "/teste",
       component: Test,
@@ -89,9 +91,15 @@ const appRoutes = [
       exact: true,
     },
     {
-      name: "Identification",
+      name: "SpecifBases",
       path: "/identification/ACM",
       component: SpecificBases,
+      exact: false,
+    },
+    {
+      name: "Duplicates",
+      path: "/identification/duplicates",
+      component: IdentificationDuplicates,
       exact: false,
     }
 ];

@@ -60,7 +60,7 @@ class SpecificBases extends Component {
   }
 
   getData() {
-    const id = this.props.project.id || 'f9fb7e03-e062-4aae-ad78-b1fb57a053a9'
+    const id = this.props.project.id || 'f9fb7e03-e062-4aae-ad78-b1fb57a053a9' //mudar
     axios.get(`http://localhost:5000/study/${id}`).then(res => {
       const data = res.data.map(data => {
         return {
