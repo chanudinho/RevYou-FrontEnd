@@ -75,17 +75,23 @@ const identificationResume = ({ data, handleDuplicate, handleSubmit }) => {
                 dataSource={data}
                 rowClassName={record => record.color.replace('#', '')}
                 rowKey={data => data.id}
+                expandedRowRender={record => (
+                  <div style={{ margin: 0 }}>
+                    <span style={{ color: 'blue'}}> Abstract: </span>
+                    <span>{record.abstract}</span>
+                  </div>
+                )}
                 pagination={false}
               />
             </Col>
           </Row>
           <Row type="flex" justify="space-between">
-            <Col span={5} >
+            <Col span={5}>
               <Button type="danger" href="/#/identification" htmlType="button" block>
                 Cancel
               </Button>
             </Col>
-            <Col span={5} >
+            <Col span={5}>
               <Button type="primary" htmlType="submit" onClick={handleSubmit} block>
                 Save
               </Button>
