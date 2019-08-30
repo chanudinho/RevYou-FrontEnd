@@ -16,8 +16,8 @@ class Protocol extends Component{
                 <SecondaryQuestion {...this.props}/>
                 <StandardQuery {...this.props}/>
                 <SearchKeyword {...this.props}/>
-                <Language/>
-                <SearchEngine/>
+                <Language {...this.props}/>
+                <SearchEngine {...this.props}/>
                 <SelectionCriteria {...this.props}/>
             </div>
         )

@@ -5,7 +5,7 @@ import TemplateForm from './../screens/templateForm/TemplateForm';
 
 //minhas rotas
 import ListProjects from '../screens/project/project';
-import InviteResearchers from '../screens/inviteResearchers/inviteResearchers';
+import InviteResearchers from '../screens/inviteResearchers/manageResearchers';
 import RegisterProject from '../screens/project/registerProject';
 import UpdateProject from '../screens/project/updateProject';
 import Protocol from '../screens/protocol/protocol';
