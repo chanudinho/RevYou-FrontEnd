@@ -3,24 +3,22 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { Button, message, Tabs } from 'antd';
 import IdentificationResumeComponent from '../../components/identification/identificationResume';
-import SpecificBasesComponent from '../../components/identification/specificBases';
+import AdaptedQueryAndImport from './adaptedQueryAndImport';
 import UpdateStudy from './updateStudy';
 
 const { TabPane } = Tabs;
 
 class SpecificBases extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      fileList: '',
       data: [],
       panes: [0],
-      newTabIndex: 0,
+      newTabIndex: null,
       modalVisible: false,
       studyUpdate: '',
       activeKey: '0'
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleOk = this.handleOk.bind(this);
@@ -33,45 +31,13 @@ class SpecificBases extends Component {
     this.getData();
   }
 
-  handleSubmit({ file }) {
-    let formData = new FormData();
-    formData.append('image', file);
-    axios
-      .post(`http://localhost:5000/study/${this.props.project.id}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      })
-      .then(res => {
-        this.setState({
-          fileList: [
-            {
-              uid: '1',
-              name: file.name,
-              status: 'done'
-            }
-          ]
-        });
-        this.setState({ importedStudies: res.data });
-      })
-      .catch(error => {
-        this.setState({
-          fileList: [
-            {
-              uid: '1',
-              name: file.name,
-              status: 'error'
-            }
-          ]
-        });
-      });
-  }
-
   addTab() {
-    const len = this.state.newTabIndex + 1;
+    const len = this.state.newTabIndex || this.state.panes.length;
+    console.log('newtab', this.state.newTabIndex)
     const panes = this.state.panes;
-    panes.push(len);
-    this.setState({panes, newTabIndex: len });
+    panes.splice(len,0,len);
+    console.log(panes);
+    this.setState({panes, newTabIndex: null});
   }
 
   onChange = activeKey => {
@@ -86,8 +52,7 @@ class SpecificBases extends Component {
     let panes = this.state.panes;
     let temp = panes.indexOf(parseInt(targetKey));
     panes.splice(temp, 1)
-    console.log(panes);
-    this.setState({panes});
+    this.setState({panes, newTabIndex: parseInt(targetKey)});
   }
 
   getData() {
@@ -129,6 +94,7 @@ class SpecificBases extends Component {
   }
 
   render() {
+    const baseName = this.props.match.params.name;
     return (
       <div>
         <div style={{ marginBottom: 16 }}>
@@ -141,10 +107,10 @@ class SpecificBases extends Component {
           type="editable-card"
           onEdit={this.onEdit}
         >
-          {this.state.panes.map(pane => (
-            <TabPane tab={`Search ${pane}`} key={pane}>
-              <SpecificBasesComponent {...this.state} handleSubmit={this.handleSubmit} />
-              <IdentificationResumeComponent {...this.state} handleEdit={this.handleEdit} />
+          {this.state.panes.map((pane, index) => (
+            <TabPane tab={`Search ${pane}`} key={pane} closable={index === 0 ? false: true}>
+              <AdaptedQueryAndImport projectId={this.props.project.id} baseName={baseName} search={this.state.activeKey}/>
+              <IdentificationResumeComponent {...this.state} handleEdit={this.handleEdit} baseName={baseName}  />
               <UpdateStudy
                 studyUpdate={this.state.studyUpdate}
                 modalVisible={this.state.modalVisible}

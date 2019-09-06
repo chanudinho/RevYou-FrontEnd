@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { message } from 'antd';
-import InviteResearchers from '../../components/projectDefinition/inviteResearchers';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import InviteResearchers from '../../components/projectDefinition/inviteResearchers';
 
 class inviteResearchers extends Component {
   constructor() {
@@ -68,4 +69,8 @@ class inviteResearchers extends Component {
   }
 }
 
-export default inviteResearchers;
+const mapStateToProps = state => ({
+  project: state.project
+});
+
+export default connect(mapStateToProps)(inviteResearchers);

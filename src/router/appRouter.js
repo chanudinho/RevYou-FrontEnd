@@ -5,7 +5,7 @@ import TemplateForm from './../screens/templateForm/TemplateForm';
 
 //minhas rotas
 import ListProjects from '../screens/project/project';
-import InviteResearchers from '../screens/inviteResearchers/manageResearchers';
+import InviteResearchers from '../screens/inviteResearchers/inviteResearchers';
 import RegisterProject from '../screens/project/registerProject';
 import UpdateProject from '../screens/project/updateProject';
 import Protocol from '../screens/protocol/protocol';
@@ -13,7 +13,7 @@ import UserProfile from '../screens/userProfile/userProfile';
 import IdentificationResume from '../screens/identification/identificationResume'
 import SpecificBases from '../screens/identification/specificBases';
 import IdentificationDuplicates from '../screens/identification/identificationDuplicates';
-
+import SetResearcherBase from '../screens/inviteResearchers/setResearcherBase';
 //teste
 import Test from '../components/projectDefinition/teste'
 
@@ -91,8 +91,8 @@ const appRoutes = [
       exact: true,
     },
     {
-      name: "SpecifBases",
-      path: "/identification/ACM",
+      name: "SpecifBase",
+      path: "/identification/specificbase/:name",
       component: SpecificBases,
       exact: false,
     },
@@ -100,6 +100,12 @@ const appRoutes = [
       name: "Duplicates",
       path: "/identification/duplicates",
       component: IdentificationDuplicates,
+      exact: false,
+    },
+    {
+      name: "SetResearchers",
+      path: "/identification/setResearcherBase",
+      component: SetResearcherBase,
       exact: false,
     }
 ];

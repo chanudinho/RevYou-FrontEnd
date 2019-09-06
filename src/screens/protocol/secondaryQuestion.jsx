@@ -38,7 +38,7 @@ class SecondaryQuestion extends Component {
       description: value,
       ProjectId
     }).then(res => {
-      message.sucess('Secondary Question was successfully registered');
+      message.success('Secondary Question was successfully registered');
     }).catch(err => {
       message.error('Ops... Server error, please contact the administrator');
     });

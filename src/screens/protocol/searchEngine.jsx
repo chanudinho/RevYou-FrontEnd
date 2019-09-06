@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import SearchEngineComponent from '../../components/protocol/searchEngine';
+import { setBases } from '../../reducers/bases/actions';
 
 const listbases = [
   'ACM',
@@ -60,28 +62,30 @@ class SearchEngine extends Component {
         }
       });
       if (createBases.length > 0) {
-        console.log('createBases', createBases )
+        console.log('createBases', createBases);
         await axios.post(`http://localhost:5000/searchEngine`, {
           bases: createBases
         });
       }
       if (assoaciateBases.length > 0) {
-        console.log('assoaciateBases', assoaciateBases )
+        console.log('assoaciateBases', assoaciateBases);
         await axios.post(`http://localhost:5000/searchEngine/createAssociation`, {
           bases: assoaciateBases,
           ProjectId
         });
       }
       if (deleteBases.length > 0) {
-        console.log('delete', deleteBases )
-        await axios.delete(`http://localhost:5000/searchEngine`,  { params: {
-          bases: deleteBases,
-          ProjectId
-        }});
+        console.log('delete', deleteBases);
+        await axios.delete(`http://localhost:5000/searchEngine`, {
+          params: {
+            bases: deleteBases,
+            ProjectId
+          }
+        });
       }
       await this.getData();
     } catch (err) {
-      console.log('error = ',err)
+      console.log('error = ', err);
     }
   }
 
@@ -90,6 +94,7 @@ class SearchEngine extends Component {
     axios.get(`http://localhost:5000/searchEngine/${ProjectId}`).then(async res => {
       const bases = await res.data[0].SearchEngines.map(data => data.name);
       this.setState({ bases, basesBack: bases });
+      this.props.bases(bases);
     });
   }
 
@@ -104,4 +109,10 @@ class SearchEngine extends Component {
   }
 }
 
-export default SearchEngine;
+const mapDispatchToProps = dispatch => ({
+  bases: bases => {
+    dispatch(setBases({ bases }));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(SearchEngine);

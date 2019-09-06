@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Select } from 'antd';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import SetReseartcherBaseComponent from '../../components/projectDefinition/setReseartcherBase'
 
@@ -44,4 +45,8 @@ class SetReseartcherBase extends Component {
 
 }
 
-export default SetReseartcherBase;
+const mapStateToProps = state => ({
+    project: state.project
+});
+
+export default  connect(mapStateToProps)(SetReseartcherBase);
