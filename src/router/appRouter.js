@@ -14,6 +14,7 @@ import IdentificationResume from '../screens/identification/identificationResume
 import SpecificBases from '../screens/identification/specificBases';
 import IdentificationDuplicates from '../screens/identification/identificationDuplicates';
 import SetResearcherBase from '../screens/inviteResearchers/setResearcherBase';
+import StudyManually from '../screens/identification/studyManually';
 //teste
 import Test from '../components/projectDefinition/teste'
 
@@ -106,6 +107,12 @@ const appRoutes = [
       name: "SetResearchers",
       path: "/identification/setResearcherBase",
       component: SetResearcherBase,
+      exact: false,
+    },
+    {
+      name: "studyManually",
+      path: "/identification/studyManually",
+      component: StudyManually,
       exact: false,
     }
 ];

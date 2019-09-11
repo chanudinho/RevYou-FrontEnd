@@ -52,9 +52,10 @@ class Sider extends Component {
           <SubMenu key="Identification" title={<span><Icon type="file-search" />Identification</span>}>
             <Menu.Item key="10"><Link to="/identification/setResearcherBase">Set Researchers</Link></Menu.Item>
             <Menu.Item key="8"><Link to="/identification">Resume Search Sessions</Link></Menu.Item>
+            <Menu.Item key ="bbb"><Link to="/identification/studyManually">Add study manually</Link></Menu.Item>
+            {this.state.bases}
             <Menu.Item key="9"><Link to="/identification/duplicates">Duplicate Studies</Link></Menu.Item>
             <Menu.Item key="aaaaaaaaa"><Link to="/identification/specificbase/ACM">ACM</Link></Menu.Item>
-            {this.state.bases}
           </SubMenu>
           <SubMenu key="sub3" title={<span><Icon type="notification" />Extraction</span>}>
             <Menu.Item key="21"><Link to="/extraction/step">Setting Step</Link></Menu.Item>

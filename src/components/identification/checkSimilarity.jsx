@@ -1,16 +1,14 @@
 import React from 'react';
-import { Collapse, Table, Button, Row, Col, Tag } from 'antd';
+import { Table, Tag } from 'antd';
 import './identificationDuplicates.css';
 
-const Panel = Collapse.Panel;
-
-const checkSimilarity = ({ data }) => {
+const checkSimilarity = ({ data, clickOnLine }) => {
   const columns = [
     {
       title: 'Title',
       dataIndex: 'title',
       key: 'title',
-      width: 300,
+      width: 300
     },
     {
       title: 'Authors',
@@ -50,11 +48,20 @@ const checkSimilarity = ({ data }) => {
       key: 'similarity',
       width: 50,
       sorter: (a, b) => a.similarity - b.similarity,
-      render: text => (text + '%')
+      render: text => text + '%'
     }
   ];
 
-  return <Table columns={columns} dataSource={data} rowKey={data => data.id} pagination={false} scroll={{ y: 600 }} />;
+  return (
+    <Table
+      columns={columns}
+      dataSource={data}
+      rowKey={data => data.id}
+      pagination={false}
+      scroll={{ y: 600 }}
+      onRow={record => {return {onDoubleClick: () => clickOnLine(record.id)}}}
+    />
+  );
 };
 
 export default checkSimilarity;

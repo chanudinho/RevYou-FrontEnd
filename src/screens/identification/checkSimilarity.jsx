@@ -34,7 +34,7 @@ class CheckSimilarity extends Component {
     }
 
     render(){
-        return <CheckSimilarityComponent {...this.state}/>
+        return <CheckSimilarityComponent {...this.state} clickOnLine={this.props.clickOnLine}/>
     }
 }
 

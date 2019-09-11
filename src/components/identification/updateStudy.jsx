@@ -8,22 +8,21 @@ const { Option } = Select;
 const { TextArea } = Input;
 
 const UpdateStudy = ({
-  modalVisible,
   handleOk,
   handleCancel,
   initialValues,
-  handleSubmit,
   createProject,
-  valueSelect,
+  status,
+  venueType,
   handleChange
 }) => (
   <Formik
     initialValues={initialValues}
-    onSubmit={handleSubmit}
+    onSubmit={handleOk}
     validationSchema={createProject}
     enableReinitialize={true}
   >
-    {({ errors, touched }) => (
+    {({ resetForm, errors, touched }) => (
       <FormikForm>
         <Row gutter={10}>
           <Col span={12}>
@@ -39,14 +38,11 @@ const UpdateStudy = ({
                     {...field}
                     name="status"
                     placeholder="Status..."
-                    value={valueSelect}
-                    onChange={handleChange}
+                    value={status}
+                    onChange={value => handleChange('status', value)}
                   >
-                    <Option value="Journal">Journal</Option>
-                    <Option value="Conferecence Pronceendings">Conferecence Pronceendings</Option>
-                    <Option value="Technical Report">Technical Report</Option>
-                    <Option value="Thesis">Thesis</Option>
-                    <Option value="Book">Book</Option>
+                    <Option value="Unclassified">Unclassified</Option>
+                    <Option value="Duplicated">Duplicated</Option>
                   </Select>
                 )}
               />
@@ -65,11 +61,14 @@ const UpdateStudy = ({
                     {...field}
                     name="venueType"
                     placeholder="Venue Type..."
-                    value={valueSelect}
-                    onChange={handleChange}
+                    value={venueType}
+                    onChange={value => handleChange('venueType', value)}
                   >
-                    <Option value="Unclassified">Unclassified</Option>
-                    <Option value="Duplicated">Duplicated</Option>
+                    <Option value="Journal">Journal</Option>
+                    <Option value="Conferecence Pronceendings">Conferecence Pronceendings</Option>
+                    <Option value="Technical Report">Technical Report</Option>
+                    <Option value="Thesis">Thesis</Option>
+                    <Option value="Book">Book</Option>
                   </Select>
                 )}
               />
@@ -230,14 +229,14 @@ const UpdateStudy = ({
           </Col>
         </Row>
         <Divider />
-        <Row type="flex" justify="end">
-          <Col span={2}>
-            <Button type="danger" htmlType="button" onClick={handleCancel}>
+        <Row type="flex" justify="space-between">
+          <Col span={5}>
+            <Button type="danger" htmlType="button" onClick={handleCancel.bind(null, resetForm)} block>
               Cancel
             </Button>
           </Col>
-          <Col span={2}>
-            <Button type="primary" htmlType="submit">
+          <Col span={5}>
+            <Button type="primary" htmlType="submit" block>
               Save
             </Button>
           </Col>
