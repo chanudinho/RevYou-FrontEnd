@@ -18,7 +18,7 @@ class registerProject extends Component {
     super();
     this.state = {
       redirect: false,
-      valueSelect: null
+      valueSelect: undefined
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -34,6 +34,7 @@ class registerProject extends Component {
         title: values.title,
         description: values.description,
         objective: values.objective,
+        reviewType: this.state.valueSelect,
         CoordinatorId: this.props.login.id
       })
       .then(res => {

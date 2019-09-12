@@ -40,7 +40,7 @@ const registerProject = ({ initialValues, handleSubmit, handleChange, valueSelec
                       {...field}
                       name="reviewType"
                       placeholder="Select a Review Type"
-                      value={valueSelect ? valueSelect: ''}
+                      value={valueSelect}
                       onChange={handleChange}
                     >
                       <Option value="Systematic Review">Systematic Review</Option>

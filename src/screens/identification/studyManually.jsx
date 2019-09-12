@@ -28,6 +28,7 @@ class StudyManually extends Component {
     this.cancelFormik = this.cancelFormik.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getData = this.getData.bind(this);
+    this.onSearch = this.onSearch.bind(this);
   }
 
   componentDidMount() {
@@ -98,6 +99,33 @@ class StudyManually extends Component {
       this.setState({ status: value });
     } else {
       this.setState({ venueType: value });
+    }
+  }
+
+  onSearch(search) {
+    if (search !== '') {
+      const ProjectId = this.props.project.id;
+      axios
+        .get(
+          `http://localhost:5000/study/findStudies?base=manually&search=${search}&ProjectId=${ProjectId}`
+        )
+        .then(res => {
+          const data = res.data.map(data => {
+            return {
+              title: data.title,
+              author: data.authors,
+              year: data.year,
+              status: data.generalStatus,
+              key: data.id
+            };
+          });
+          this.setState({ data });
+        })
+        .catch(() => {
+          message.error('Ops... Server error, please contact the administrator');
+        });
+    } else {
+      this.getData();
     }
   }
 
@@ -184,6 +212,7 @@ class StudyManually extends Component {
           {...this.state}
           handleEdit={this.handleEdit}
           baseName={baseName}
+          onSearch={this.onSearch}
         />
         <UpdateStudy
           studyUpdate={this.state.studyUpdate}

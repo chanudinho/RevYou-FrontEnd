@@ -4,7 +4,7 @@ import { Collapse, Table, Button, Row, Col, Input } from 'antd';
 const Panel = Collapse.Panel;
 const Search = Input.Search;
 
-const identificationResume = ({ data, handleEdit, baseName }) => {
+const identificationResume = ({ data, handleEdit, baseName, onSearch }) => {
   const columns = [
     {
       title: 'Title',
@@ -55,7 +55,7 @@ const identificationResume = ({ data, handleEdit, baseName }) => {
           key="1"
         >
           <Col span={12} style={{ marginBottom: 20 }}>
-            <Search placeholder="input the study you search..." size="large" enterButton />
+            <Search placeholder="input the study you search..." size="large" onSearch={onSearch} enterButton />
           </Col>
           <Col span={24}>
             <Table columns={columns} dataSource={data} rowKey={data => data.key} />

@@ -24,6 +24,7 @@ class SpecificBases extends Component {
     this.handleOk = this.handleOk.bind(this);
     this.addTab = this.addTab.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onSearch = this.onSearch.bind(this);
   }
 
   componentDidMount() {
@@ -38,10 +39,8 @@ class SpecificBases extends Component {
 
   addTab() {
     const len = this.state.newTabIndex || this.state.panes.length;
-    console.log('newtab', this.state.newTabIndex);
     const panes = this.state.panes;
     panes.splice(len, 0, len);
-    console.log(panes);
     this.setState({ panes, newTabIndex: null });
   }
 
@@ -80,8 +79,21 @@ class SpecificBases extends Component {
 
   //modal
   handleOk(value) {
-    const {title, authors, citekey, keywords, venue, year, pages, volume, url, issn, doi, generalStatus, venueType} = value
-    console.log('valor do formik = ', title);
+    const {
+      title,
+      authors,
+      citekey,
+      keywords,
+      venue,
+      year,
+      pages,
+      volume,
+      url,
+      issn,
+      doi,
+      generalStatus,
+      venueType
+    } = value;
     axios
       .put(`http://localhost:5000/study/specificStudy/${value.id}`, {
         title,
@@ -123,6 +135,34 @@ class SpecificBases extends Component {
     });
   }
 
+  onSearch(search) {
+    if (search !== '') {
+      const ProjectId = this.props.project.id;
+      const base = this.props.match.params.name;
+      axios
+        .get(
+          `http://localhost:5000/study/findStudies?base=${base}&search=${search}&ProjectId=${ProjectId}`
+        )
+        .then(res => {
+          const data = res.data.map(data => {
+            return {
+              title: data.title,
+              author: data.authors,
+              year: data.year,
+              status: data.generalStatus,
+              key: data.id
+            };
+          });
+          this.setState({ data });
+        })
+        .catch(() => {
+          message.error('Ops... Server error, please contact the administrator');
+        });
+    } else {
+      this.getData();
+    }
+  }
+
   render() {
     const baseName = this.props.match.params.name;
     return (
@@ -148,6 +188,7 @@ class SpecificBases extends Component {
                 {...this.state}
                 handleEdit={this.handleEdit}
                 baseName={baseName}
+                onSearch={this.onSearch}
               />
               <UpdateStudy
                 studyUpdate={this.state.studyUpdate}

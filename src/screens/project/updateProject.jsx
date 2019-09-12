@@ -12,7 +12,7 @@ class UpdateProject extends PureComponent {
     super();
     this.state = {
       redirect: false,
-      valueSelect: null,
+      valueSelect: undefined,
       initialValues: {
         title: '',
         description: '',
@@ -60,8 +60,9 @@ class UpdateProject extends PureComponent {
         initialValues: {
           title: res.data.title,
           description: res.data.description,
-          objective: res.data.objective
-        }
+          objective: res.data.objective,
+        },
+        valueSelect: res.data.reviewType
       });
     });
   }
