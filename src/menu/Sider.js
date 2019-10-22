@@ -41,7 +41,7 @@ class Sider extends Component {
           style={{ height: '100%', borderRight: 0 }}
         >
           <SubMenu key="User" title={<span><Icon type="user" />User</span>}>
-            <Menu.Item key="1"><Link to="/">Projects</Link></Menu.Item>
+            <Menu.Item key="1"><Link to="/home">Projects</Link></Menu.Item>
             <Menu.Item key="2"><Link to="/userprofile">Profile</Link></Menu.Item>
           </SubMenu>
           <SubMenu key="Project" title={<span><Icon type="laptop" />Project</span>}>

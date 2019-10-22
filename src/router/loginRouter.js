@@ -5,7 +5,7 @@ import {Route} from "react-router-dom";
 
 const loginrouter = () => (
     <div>
-        <Route path='/login' component={Login}/>
+        <Route exact path='/' component={Login}/>
         <Route path='/singup' component={Singup}/>
     </div>
 );

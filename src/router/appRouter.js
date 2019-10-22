@@ -21,7 +21,7 @@ import Test from '../components/projectDefinition/teste'
 const appRoutes = [
     {
       name: "Home",
-      path: "/",
+      path: "/home",
       component: ListProjects,
       exact: true
     },

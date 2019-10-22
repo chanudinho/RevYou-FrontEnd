@@ -8,11 +8,13 @@ const FormItem = Form.Item;
 
 const secondaryQuestion = ({
   initialValues,
+  questions,
   handleSubmit,
   createProject,
   counter,
   handleAddQuestion,
-  handleRemoveQuestion
+  handleRemoveQuestion,
+  handleChange
 }) => {
   const createQuestion = () => {
     let quention = [];
@@ -28,6 +30,8 @@ const secondaryQuestion = ({
                   name={`description${i}`}
                   placeholder="Description..."
                   autosize={{ minRows: 2, maxRows: 6 }}
+                  value={questions[i] !== undefined ? questions[i] : ''}
+                  onChange={e => handleChange(e, i)}
                 />
               )}
             />

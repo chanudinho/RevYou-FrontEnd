@@ -29,6 +29,7 @@ class CheckSimilarity extends Component {
             const data = await res.data.map(data => {
                 return data
             })
+            console.log(data);
             this.setState({data})
         })
     }

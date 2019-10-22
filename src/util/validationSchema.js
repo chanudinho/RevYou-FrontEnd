@@ -59,4 +59,21 @@ export const singupValidation = Yup.object().shape({
 
 export const createProject = Yup.object().shape({
   title: Yup.string().required()
-})
+});
+
+export const changeName = Yup.object().shape({
+  name: Yup.string().required().matches(/^[a-zA-Zà-ú\s]+$/, {message: 'the Name can only letters contain'})
+});
+
+export const changeEmail = Yup.object().shape({
+  email: Yup.string()
+    .email()
+    .required()
+});
+
+export const changePassword = Yup.object().shape({
+  password: Yup.string()
+  .min(6, 'The password must have at least 6 digits')
+  .required(),
+  passwordVerification: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match')
+});

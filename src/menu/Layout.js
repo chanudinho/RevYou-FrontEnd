@@ -18,7 +18,7 @@ import BreadcrumbConfig from "auto-breadcrumb";
 
 const Breadcrumbs = BreadcrumbConfig({
   staticRoutesMap: {
-    "/": "HOME"
+    "/home": "HOME"
   },
   dynamicRoutesMap: {
     "/:id": ({ id }) => `${id.toUpperCase()}`,
