@@ -27,6 +27,7 @@ class StandardQuery extends Component {
         query: values.query,
         ProjectId
       }).then(res =>{
+        this.getData();
         message.success('Standard Query was successfully registered');
       }).catch(err =>{
         message.error('Ops... Server error, please contact the administrator');

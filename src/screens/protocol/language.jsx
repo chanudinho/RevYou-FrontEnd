@@ -1,27 +1,92 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { message } from 'antd';
 import LanguageComponent from '../../components/protocol/language';
 
-let languages = [];
+let listLanguages = ['English','Spanish','Portuguese','Russian','Chinese'];
 
 class Language extends Component {
   constructor() {
     super();
     this.state = {
-      languages: []
+      languages: [],
+      languagesOri: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getData = this.getData.bind(this);
+  }
+
+  componentDidMount() {
+    this.getData();
   }
 
   handleChange(value) {
-    languages = value;
     this.setState({
-      languages: languages
+      languages: value
     });
   }
 
-  handleSubmit() {
+  async handleSubmit() {
+    try {
+      const ProjectId = this.props.project.id;
+      const languages = this.state.languages;
+      const languagesOri = this.state.languagesOri;
+      let createLanguages = [];
+      let assoaciateLanguages = [];
+      let deleteLanguages = [];
+
+      languages.forEach(language => {
+        if (languagesOri.indexOf(language) === -1) {
+          if (listLanguages.indexOf(language) === -1) {
+            //create a new language
+            createLanguages.push(language);
+          }
+          assoaciateLanguages.push(language); // assoaciate luaguage to project
+        }
+      });
+
+      languagesOri.forEach(language => {
+        if (languages.indexOf(language) === -1) {
+          deleteLanguages.push(language);
+        }
+      });
+
+      if(createLanguages.length > 0){
+        axios.post(`http://localhost:5000/language`,{
+          languages: createLanguages
+        })
+      }
+
+      if(assoaciateLanguages.length > 0){
+        axios.post(`http://localhost:5000/language/createAssociation`,{
+          ProjectId,
+          languages: assoaciateLanguages
+        })
+      }
+
+      if(deleteLanguages.length > 0){
+        console.log('entrou no delete')
+        axios.delete(`http://localhost:5000/language`,{
+          params: {
+            ProjectId,
+            languages: deleteLanguages
+          }
+        })
+      }
+      message.success('Ok');
+    } catch (err) {
+      message.error('Ops... Server error, please contact the administrator');
+    }
     console.log(this.state.languages);
+  }
+
+  getData() {
+    const ProjectId = this.props.project.id;
+    axios.get(`http://localhost:5000/language/${ProjectId}`).then(async res => {
+      const languages = await res.data[0].Languagues.map(data => data.studiesLanguage);
+      this.setState({ languages, languagesOri: languages});
+    })
   }
 
   render() {

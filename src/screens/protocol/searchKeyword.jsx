@@ -3,8 +3,6 @@ import axios from 'axios';
 import {message} from 'antd';
 import SearchKeywordComponent from '../../components/protocol/searchKeyword';
 
-let keywords = [];
-
 class SearchKeyword extends Component {
   constructor() {
     super();
@@ -23,9 +21,8 @@ class SearchKeyword extends Component {
   }
 
   handleChange(value) {
-    keywords = value;
     this.setState({
-      keywords: keywords
+      keywords: value
     });
   }
 
